@@ -1,0 +1,87 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  faqs: FaqItem[];
+}
+
+const { 
+  title = '常见问题', 
+  faqs 
+} = Astro.props;
+---
+
+<section class="py-12 bg-gray-50">
+  <div class="container mx-auto px-4">
+    {title && (
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">{title}</h2>
+    )}
+    
+    <div class="max-w-3xl mx-auto divide-y divide-gray-200">
+      {faqs.map((faq, index) => (
+        <div class="py-6" x-data="{ open: false }">
+          <button 
+            class="flex w-full justify-between items-center text-left focus:outline-none"
+            @click="open = !open"
+            aria-expanded="false"
+            :aria-expanded="open.toString()"
+          >
+            <h3 class="text-lg font-medium text-gray-900">{faq.question}</h3>
+            <span class="ml-6 flex-shrink-0">
+              <svg 
+                class="h-6 w-6 text-gray-400 transform transition-transform duration-300"
+                :class="{'rotate-180': open}"
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </button>
+          <div 
+            class="mt-2 pr-12 overflow-hidden transition-all max-h-0 duration-300"
+            x-ref="container"
+            x-bind:style="open ? 'max-height: ' + $refs.container.scrollHeight + 'px' : ''"
+          >
+            <p class="text-base text-gray-600">{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // 简单的手风琴效果实现
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.py-6');
+    
+    faqItems.forEach(item => {
+      const button = item.querySelector('button');
+      const content = item.querySelector('.mt-2');
+      const svg = item.querySelector('svg');
+      let isOpen = false;
+      
+      button?.addEventListener('click', () => {
+        isOpen = !isOpen;
+        button.setAttribute('aria-expanded', isOpen.toString());
+        
+        if (isOpen) {
+          content?.classList.remove('max-h-0');
+          content?.classList.add('max-h-96');
+          svg?.classList.add('rotate-180');
+        } else {
+          content?.classList.remove('max-h-96');
+          content?.classList.add('max-h-0');
+          svg?.classList.remove('rotate-180');
+        }
+      });
+    });
+  });
+</script>

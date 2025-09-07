@@ -1,26 +1,92 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://clashmi.uk',
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: 'ClashMi官网',
+			locales: {
+                root: {
+                  label: '简体中文',
+                  lang: 'zh-CN',
+                },
+			},
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/KaringX/clashmi' },
+			],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: '介绍',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ label: '关于ClashMi', link: '/' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: '下载',
+					items: [
+						{ label: '立即下载', link: '/download' },
+					],
+				},
+				{
+					label: '教程',
+					items: [
+						{ label: '使用教程', link: '/tutorial' },
+					],
+				},
+				{
+					label: '机场推荐',
+					items: [
+						{ label: '机场推荐', link: '/airport' },
+					],
+				},
+				{
+					label: '常见问题',
+					items: [
+						{ label: 'FAQ', link: '/faq' },
+					],
+				},
+				{
+					label: '⭐️科学上网梯子加速器机场推荐',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: '🚀优信云', badge: { text: 'IEPL/IPLC 高速专线', variant: 'success' },link: 'https://a.suola.link/youxinyun' },
+						{ label: '🚀扬帆云', badge: { text: '老牌机场分站', variant: 'note' },link: 'https://a.suola.link/yfy' },
+						{ label: '🚀疾风云', badge: { text: '可做备用机场', variant: 'tip' },link: 'https://a.suola.link/jifeng' },
+						{ label: '🚀尔湾云', badge: { text: '性价比高', variant: 'danger' },link: 'https://a.suola.link/erwan' },
+						{ label: '🚀网际快车', badge: { text: '性价比高', variant: 'caution' },link: 'https://a.suola.link/wjkc' },
+					],
 				},
 			],
+			head: [
+				// SEO Meta Tags
+				{ tag: 'meta', attrs: { name: 'description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
+				{ tag: 'meta', attrs: { name: 'keywords', content: 'ClashMi,ClashMi官网,ClashMi下载地址,Clash,Mihomo,代理工具,免费代理,开源代理' } },
+				
+				// Open Graph
+				{ tag: 'meta', attrs: { property: 'og:title', content: 'ClashMi官网 - 免费开源的移动端代理工具' } },
+				{ tag: 'meta', attrs: { property: 'og:description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
+				{ tag: 'meta', attrs: { property: 'og:type', content: 'website' } },
+				{ tag: 'meta', attrs: { property: 'og:url', content: 'https://clashmi.uk' } },
+				{ tag: 'meta', attrs: { property: 'og:image', content: 'https://clashmi.uk/clashmi-logo.png' } },
+				
+				// Twitter Card
+				{ tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
+				{ tag: 'meta', attrs: { name: 'twitter:title', content: 'ClashMi官网 - 免费开源的移动端代理工具' } },
+				{ tag: 'meta', attrs: { name: 'twitter:description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
+				{ tag: 'meta', attrs: { name: 'twitter:image', content: 'https://clashmi.uk/clashmi-logo.png' } },
+				
+				// Canonical URL
+				{ tag: 'link', attrs: { rel: 'canonical', href: 'https://clashmi.uk' } },
+			],
+		}),
+		sitemap(),
+		tailwind({
+			applyBaseStyles: false,
 		}),
 	],
 });

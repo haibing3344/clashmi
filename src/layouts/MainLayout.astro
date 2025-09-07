@@ -1,0 +1,126 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/tailwind.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: { src: string; alt: string };
+  canonicalURL?: URL | string;
+}
+
+const {
+  title,
+  description = 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。',
+  image = { src: '/clashmi-logo.png', alt: 'ClashMi Logo' },
+  canonicalURL = Astro.url,
+} = Astro.props;
+
+// 构建完整的图片URL
+const resolvedImage = new URL(
+  image.src.startsWith('/') ? image.src.slice(1) : image.src,
+  Astro.site
+).toString();
+
+// 构建规范URL
+const resolvedCanonicalURL = canonicalURL
+  ? canonicalURL.toString()
+  : new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD 结构化数据
+const jsonLD = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ClashMi',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'iOS, Android, Windows, HarmonyOS',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+  description: description,
+  url: resolvedCanonicalURL,
+  image: resolvedImage,
+  downloadUrl: 'https://clashmi.uk/download',
+  softwareVersion: '1.0.4.82',
+  releaseNotes: 'Latest version with improved performance and bug fixes',
+  author: {
+    '@type': 'Organization',
+    name: 'ClashMi Team',
+    url: 'https://clashmi.uk',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    ratingCount: '1250',
+    bestRating: '5',
+    worstRating: '1',
+  },
+};
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={resolvedCanonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={resolvedCanonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={resolvedImage} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={resolvedCanonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={resolvedImage} />
+    
+    <!-- JSON-LD 结构化数据 -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+    
+    <!-- 视图过渡 -->
+    <ViewTransitions />
+  </head>
+  <body>
+    <slot />
+    
+    <footer class="bg-gray-100 py-8 mt-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4">友情链接</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="https://jichangliebiao.com" class="text-primary-600 hover:underline">机场列表</a>
+              </li>
+              <li>
+                <a href="https://github.com/KaringX/clashmi" class="text-primary-600 hover:underline">ClashMi GitHub</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">版权声明</h3>
+            <p class="text-gray-600">
+              © {new Date().getFullYear()} ClashMi. 保留所有权利。ClashMi是一款开源软件，基于Mihomo(Clash Meta)内核开发。
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

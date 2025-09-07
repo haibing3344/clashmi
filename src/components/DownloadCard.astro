@@ -1,0 +1,53 @@
+---
+interface Props {
+  platform: string;
+  icon: string;
+  description: string;
+  downloadUrl: string;
+  buttonText?: string;
+  requirements?: string;
+  version?: string;
+}
+
+const {
+  platform,
+  icon,
+  description,
+  downloadUrl,
+  buttonText = '下载',
+  requirements,
+  version,
+} = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
+  <div class="p-6">
+    <div class="flex items-start justify-between mb-4">
+      <div class="flex items-center">
+        <div class="text-primary-500 mr-3" set:html={icon} />
+        <h3 class="text-xl font-semibold text-gray-900">{platform}</h3>
+      </div>
+      {version && <span class="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-full">v{version}</span>}
+    </div>
+    
+    <p class="text-gray-600 mb-4">{description}</p>
+    
+    {requirements && (
+      <div class="mb-4">
+        <p class="text-sm text-gray-500">系统要求: {requirements}</p>
+      </div>
+    )}
+    
+    <a 
+      href={downloadUrl} 
+      class="w-full btn btn-primary flex justify-center"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+      {buttonText}
+    </a>
+  </div>
+</div>
