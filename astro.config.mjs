@@ -61,6 +61,19 @@ export default defineConfig({
 						{ label: '🚀网际快车', badge: { text: '性价比高', variant: 'caution' },link: 'https://a.suola.link/wjkc' },
 					],
 				},
+				{
+					label: '其它代理客户端',
+					items: [
+						{ label: ' Shadowrocket(小火箭)', badge: { text: 'iOS专业网络工具', variant: 'success' }, link: 'https://shadowrocket.uk' },
+						{ label: ' ClashMetaForAndroid', badge: { text: 'Android专业网络工具', variant: 'note' }, link: 'https://clashmeta.bid' },
+						{ label: ' ClashForWindows', badge: { text: 'Windows平台代理工具', variant: 'tip' }, link: 'https://clashverge.uk' },
+						{ label: ' ClashMi', badge: { text: '基于ClashMeta的跨平台代理客户端', variant: 'danger' }, link: 'https://clashmi.uk' },
+						{ label: ' Flclash', badge: { text: '基于ClashMeta的多平台代理客户端', variant: 'caution' }, link: 'https://flclash.men' },
+						{ label: ' Karing', badge: { text: '新一代网络代理工具,免费', variant: 'tip' }, link: 'https://karings.org' },
+						{ label: ' Stash', badge: { text: '简单且强大的网络工具', variant: 'success' }, link: 'https://stashapp.uk' },
+						{ label: ' Loon', badge: { text: 'iOS平台最强大的网络代理工具', variant: 'tip' }, link: 'https://nsloon.uk' },
+					],
+				},
 			],
 			head: [
 				// SEO Meta Tags
