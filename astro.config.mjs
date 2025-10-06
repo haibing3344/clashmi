@@ -76,6 +76,16 @@ export default defineConfig({
 				},
 			],
 			head: [
+				// Google AdSense
+				{ 
+					tag: 'script', 
+					attrs: { 
+						async: true, 
+						src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2394457707130437',
+						crossorigin: 'anonymous'
+					} 
+				},
+				
 				// SEO Meta Tags
 				{ tag: 'meta', attrs: { name: 'description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
 				{ tag: 'meta', attrs: { name: 'keywords', content: 'ClashMi,ClashMi官网,ClashMi下载地址,Clash,Mihomo,代理工具,免费代理,开源代理' } },
