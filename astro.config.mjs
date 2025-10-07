@@ -105,6 +105,30 @@ export default defineConfig({
 				
 				// Canonical URL
 				{ tag: 'link', attrs: { rel: 'canonical', href: 'https://clashmi.uk' } },
+				
+				// Structured Data
+				{
+					tag: 'script',
+					attrs: { type: 'application/ld+json' },
+					content: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "SoftwareApplication",
+						"name": "ClashMi",
+						"description": "ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。",
+						"url": "https://clashmi.uk",
+						"applicationCategory": "NetworkingApplication",
+						"operatingSystem": ["iOS", "Android", "Windows", "HarmonyOS"],
+						"offers": {
+							"@type": "Offer",
+							"price": "0",
+							"priceCurrency": "USD"
+						},
+						"author": {
+							"@type": "Organization",
+							"name": "ClashMi Team"
+						}
+					})
+				},
 			],
 		}),
 		sitemap(),
