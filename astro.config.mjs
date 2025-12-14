@@ -71,51 +71,7 @@ export default defineConfig({
 						src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2394457707130437',
 						crossorigin: 'anonymous'
 					} 
-				},
-				
-				// SEO Meta Tags
-				{ tag: 'meta', attrs: { name: 'description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
-				{ tag: 'meta', attrs: { name: 'keywords', content: 'ClashMi,ClashMi官网,ClashMi下载地址,Clash,Mihomo,代理工具,免费代理,开源代理' } },
-				
-				// Open Graph
-				{ tag: 'meta', attrs: { property: 'og:title', content: 'ClashMi官网 - 免费开源的移动端代理工具' } },
-				{ tag: 'meta', attrs: { property: 'og:description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
-				{ tag: 'meta', attrs: { property: 'og:type', content: 'website' } },
-				{ tag: 'meta', attrs: { property: 'og:url', content: 'https://clashmi.uk' } },
-				{ tag: 'meta', attrs: { property: 'og:image', content: 'https://clashmi.uk/clashmi-logo.png' } },
-				
-				// Twitter Card
-				{ tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
-				{ tag: 'meta', attrs: { name: 'twitter:title', content: 'ClashMi官网 - 免费开源的移动端代理工具' } },
-				{ tag: 'meta', attrs: { name: 'twitter:description', content: 'ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。' } },
-				{ tag: 'meta', attrs: { name: 'twitter:image', content: 'https://clashmi.uk/clashmi-logo.png' } },
-				
-				// Canonical URL
-				{ tag: 'link', attrs: { rel: 'canonical', href: 'https://clashmi.uk' } },
-				
-				// Structured Data
-				{
-					tag: 'script',
-					attrs: { type: 'application/ld+json' },
-					content: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "SoftwareApplication",
-						"name": "ClashMi",
-						"description": "ClashMi是一款基于Mihomo(Clash Meta)内核的移动端代理工具，完全免费且开源。",
-						"url": "https://clashmi.uk",
-						"applicationCategory": "NetworkingApplication",
-						"operatingSystem": ["iOS", "Android", "Windows", "HarmonyOS"],
-						"offers": {
-							"@type": "Offer",
-							"price": "0",
-							"priceCurrency": "USD"
-						},
-						"author": {
-							"@type": "Organization",
-							"name": "ClashMi Team"
-						}
-					})
-				},
+				},	
 			],
 		}),
 		sitemap(),
